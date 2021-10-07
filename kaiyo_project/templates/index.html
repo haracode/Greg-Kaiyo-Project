@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Greg's Furniture</title>
+</head>
+<body>
+	<h1>Greg's Furniture Store</h1>
+	<br>
+	<form method="POST" action="/">
+		<p><input type="checkbox" value="West Elm" name="mycheckbox">West Elm</p>
+		<p><input type="checkbox" value="JoyBird" name="mycheckbox">JoyBird</p>
+		<p><input type="checkbox" value="Article" name="mycheckbox">Article</p>
+		<p><input type="checkbox" value="CB2" name="mycheckbox">CB2</p>
+		<p><input type="checkbox" value="Ethan Allen" name="mycheckbox">Ethan Allen</p>
+		<p><input type="checkbox" value="Herman Miller" name="mycheckbox">Herman Miller</p>
+		<p><input type="checkbox" value="IKEA" name="mycheckbox">IKEA</p>
+
+		<p><input type="submit" value="Purchase!"> </p>
+	</form>
+	{% with messages = get_flashed_messages() %}
+  		{% if messages %}
+    		<ul class=flashes>    	
+    		{% for message in messages %}
+      			<li>{{ message }}</li>
+    		{% endfor %}
+    		</ul>
+  		{% endif %}
+	{% endwith %}
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<h2>Your Purchased Furniture</h2>
+
+	{% for order in purchased_furniture%}
+		<h3> Order {{loop.index}} - &nbsp;
+
+		{% for furniture in order.furnitures %}
+       		{{furniture}}&nbsp;&nbsp;
+    	{% endfor %}</h3>
+
+	{% endfor %}
+
+</body>
+</html>
